@@ -1,1 +1,1 @@
-# DotNetCoreCourse
+# DotNetCore

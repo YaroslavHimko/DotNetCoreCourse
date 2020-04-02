@@ -8,9 +8,11 @@ namespace vega.Controllers.Resources
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<ModelResource> Models { get; set; }
+        public ICollection<FeatureResource> Features {get; set;}
         public MakeResource()
         {
             Models = new Collection<ModelResource>();
+            Features = new Collection<FeatureResource>();
         }
     }
 }

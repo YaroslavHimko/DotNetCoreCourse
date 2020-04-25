@@ -5,6 +5,7 @@ namespace vega.Controllers.Resources
     public class ContactResource
     {
         [StringLength(255)]
+        [Required]
         public string Name { get; set; }
         [StringLength(255)]
         public string Email { get; set; }

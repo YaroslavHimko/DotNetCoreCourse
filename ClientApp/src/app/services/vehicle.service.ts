@@ -14,4 +14,8 @@ export class VehicleService {
     return this.Http.get('/api/makes')
     
   }
+
+  create(vehicle){
+    return this.Http.post('/api/vehicles', vehicle)
+  }
 }

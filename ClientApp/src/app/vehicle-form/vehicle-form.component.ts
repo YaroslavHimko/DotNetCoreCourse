@@ -43,10 +43,6 @@ vehicle: any = {
 
   submit(){
     this.vehicleService.create(this.vehicle)
-    .subscribe(
-      x => console.log(x),
-      err => {
-        this.toastrService.error('Error');
-      });
+    .subscribe(x => console.log(x));
   }
 }

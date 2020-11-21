@@ -1,3 +1,4 @@
+import * as Raven from 'raven-js'; 
 import { ErrorHandler, Injector, Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 @Injectable()
@@ -6,6 +7,7 @@ export class AppErrorHandler implements ErrorHandler {
  
  constructor (private injector: Injector) {}
  handleError(error: any) : void {
+Raven.captureException(error.originalError || error); 
  this.toastr = this.injector.get(ToastrService);
  this.toastr.error('An unexpected error occurred.', 'Error', {
  timeOut: 5000,

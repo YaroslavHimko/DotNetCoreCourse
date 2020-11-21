@@ -1,5 +1,6 @@
 import { VehicleService } from '../services/vehicle.service'; 
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -14,7 +15,9 @@ vehicle: any = {
   features: [],
   contact: {}
 };
-  constructor(private vehicleService : VehicleService) { }
+  constructor(
+    private vehicleService : VehicleService,
+    private toastrService: ToastrService) { }
   
   ngOnInit(): void { 
     this.vehicleService.getMakes().subscribe(makes => this.makes = makes);  
@@ -40,6 +43,10 @@ vehicle: any = {
 
   submit(){
     this.vehicleService.create(this.vehicle)
-    .subscribe(x => console.log(x))
+    .subscribe(
+      x => console.log(x),
+      err => {
+        this.toastrService.error('Error');
+      });
   }
 }

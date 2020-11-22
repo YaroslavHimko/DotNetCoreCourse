@@ -11,6 +11,7 @@ namespace vega.Mapping
         public MappingProfile()
         {
             // Domain to API Resource
+            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
             CreateMap<Model, KeyValuePairResource>();
@@ -25,6 +26,7 @@ namespace vega.Mapping
 
 
             //API Resource to Domain
+            CreateMap<VehicleQueryResource, VehicleQuery>();
             CreateMap<SaveVehicleResource, Vehicle>()
             .ForMember(v => v.Id, opt => opt.Ignore())
             .ForMember(v => v.ContactName, opt => opt.MapFrom(vr => vr.Contact.Name))
@@ -35,12 +37,12 @@ namespace vega.Mapping
             {
                 // Remove unselected features
 
-                var removedFeatures = v.Features.Where(f => !vr.Features.Contains(f.FeatureId));
+                var removedFeatures = v.Features.Where(f => !vr.Features.Contains(f.FeatureId)).ToList();
                 foreach (var f in removedFeatures)
                     v.Features.Remove(f);
 
                 //Add new features
-                var addedFeatures = vr.Features.Where(id => v.Features.Any(f => f.FeatureId == id)).Select(id => new VehicleFeature { FeatureId = id });
+                var addedFeatures = vr.Features.Where(id => v.Features.Any(f => f.FeatureId == id)).Select(id => new VehicleFeature { FeatureId = id }).ToList();
                 foreach (var f in addedFeatures)
                     v.Features.Add(f);
             });

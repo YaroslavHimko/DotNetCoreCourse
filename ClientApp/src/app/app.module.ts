@@ -17,6 +17,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NewComponentComponent } from './new-component/new-component.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { AppErrorHandler } from './app.error-handler';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 
 Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/5527136")
 .install();
@@ -29,7 +30,8 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
     CounterComponent,
     FetchDataComponent,
     NewComponentComponent,
-    VehicleFormComponent
+    VehicleFormComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,9 +40,10 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
       { path: 'vehicles/new', component: VehicleFormComponent},
       { path: 'vehicles/:id', component: VehicleFormComponent},
+      { path: 'vehicles', component: VehicleListComponent},
       { path: 'home', component: HomeComponent},
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },

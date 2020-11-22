@@ -1,3 +1,5 @@
+import { PaginationComponent } from './shared/pagination.component';
+
 import * as Raven from 'raven-js';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -31,7 +33,8 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
     FetchDataComponent,
     NewComponentComponent,
     VehicleFormComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

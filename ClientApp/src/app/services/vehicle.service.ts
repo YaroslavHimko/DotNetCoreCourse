@@ -12,10 +12,13 @@ export class VehicleService {
   }
   getMakes() {
     return this.Http.get('/api/makes')
-    
   }
 
   create(vehicle){
     return this.Http.post('/api/vehicles', vehicle)
   }
+
+  getVehicle(id){
+    return this.Http.get("/api/vehicles/" + id)
+    }
 }

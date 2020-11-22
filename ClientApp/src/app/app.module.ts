@@ -40,8 +40,11 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'vehicles/new', component: VehicleFormComponent},
+      { path: 'vehicles/:id', component: VehicleFormComponent},
+      { path: 'home', component: HomeComponent},
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: '**', redirectTo: 'home'}
     ])
   ],
   providers: [

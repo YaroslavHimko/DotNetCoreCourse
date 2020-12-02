@@ -21,6 +21,7 @@ import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { AppErrorHandler } from './app.error-handler';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { PhotoService } from './services/photo.service';
 
 Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/5527136")
 .install();
@@ -58,7 +59,8 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErrorHandler},
-    VehicleService
+    VehicleService,
+    PhotoService
   ],
   bootstrap: [AppComponent]
 })

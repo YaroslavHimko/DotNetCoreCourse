@@ -7,14 +7,14 @@ export class AppErrorHandler implements ErrorHandler {
  
  constructor (private injector: Injector) {}
  handleError(error: any) : void {
+        this.toastr = this.injector.get(ToastrService);
+        this.toastr.error('An unexpected error occurred.', 'Error', {
+        timeOut: 5000    
+    });
+    
     if (!isDevMode())
         Raven.captureException(error.originalError || error); 
     else
         throw error;
-
-    this.toastr = this.injector.get(ToastrService);
-    this.toastr.error('An unexpected error occurred.', 'Error', {
-    timeOut: 5000,
-    });
  }
 }

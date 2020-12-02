@@ -20,6 +20,7 @@ import { NewComponentComponent } from './new-component/new-component.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { AppErrorHandler } from './app.error-handler';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 
 Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/5527136")
 .install();
@@ -34,7 +35,8 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
     NewComponentComponent,
     VehicleFormComponent,
     VehicleListComponent,
-    PaginationComponent
+    PaginationComponent,
+    ViewVehicleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,7 +47,8 @@ Raven.config("https://380a9df39c864d30a47cf3666aae8eeb@o480337.ingest.sentry.io/
     RouterModule.forRoot([
       { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
       { path: 'vehicles/new', component: VehicleFormComponent},
-      { path: 'vehicles/:id', component: VehicleFormComponent},
+      { path: 'vehicles/edit/:id', component: VehicleFormComponent},
+      { path: 'vehicles/:id', component: ViewVehicleComponent},
       { path: 'vehicles', component: VehicleListComponent},
       { path: 'home', component: HomeComponent},
       { path: 'counter', component: CounterComponent },

@@ -33,9 +33,9 @@ vehicle: SaveVehicle = {
     private router: Router,
     private vehicleService : VehicleService,
     private toastrService: ToastrService) { 
+
       route.params.subscribe(p => {
-        if(p['id']) 
-        this.vehicle.id = +p['id'];
+        this.vehicle.id = +p['id'] || 0;
         });
     }
   
@@ -92,19 +92,14 @@ vehicle: SaveVehicle = {
   }
 
   submit() {
-    if (this.vehicle.id) {
-      this.vehicleService.update(this.vehicle)
-      .subscribe(x => {
-        this.toastrService.success(
-          'This vehicle was successfully updated.',
-          'Success'
-        );
-      });
-    }
-    else {
-      this.vehicleService.create(this.vehicle)
-      .subscribe(x => console.log(x));
-    }
+    var result$ = (this.vehicle.id) ? this.vehicleService.update(this.vehicle) : this.vehicleService.create(this.vehicle); 
+    result$.subscribe(vehicle => {
+      this.toastrService.success(
+        'This vehicle was successfully updated.',
+        'Success'
+      );
+      this.router.navigate(['/vehicles/', this.vehicle.id])
+    });
   }
 
   delete() {

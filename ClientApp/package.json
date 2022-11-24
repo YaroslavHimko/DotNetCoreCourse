@@ -37,7 +37,7 @@
     "raven-js": "^3.27.2",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.4",
-    "underscore": "^1.11.0",
+    "underscore": "^1.12.1",
     "zone.js": "0.10.3"
   },
   "devDependencies": {
